@@ -1,4 +1,12 @@
-Project Name: ITCamp_Internal_Project
-Team Name: Michelle's Kids
+# Project Name
+**Team Name:** Michelle's Kids
 
-Team Members
+## Team Members
+
+| Name | Role | Github |
+|------|------|-------|
+|      |      |       |
+|      |      |       |
+|      |      |       |
+|      |      |       |
+|      |      |       |

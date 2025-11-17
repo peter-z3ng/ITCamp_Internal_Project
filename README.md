@@ -5,7 +5,7 @@
 
 | Name | Role | Github |
 |------|------|-------|
-|      |      |       |
+|  Nan Phyu Sin Maung    |      |  @nanpsm     |
 |      |      |       |
 |      |      |       |
 |      |      |       |

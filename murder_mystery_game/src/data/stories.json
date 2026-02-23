@@ -1,0 +1,45 @@
+{
+    "1" : {
+        "desc" : "In the quiet luxury of the Sterling estate, the master of the house, Reginald Sterling, has been found dead in his private study at 2:00 PM. Now, the player must navigate the conflicting stories of the five people present to determine who committed the crime during a narrow window of missing time.",
+        "char" : {
+                    "Eleanor Sterling": "The victim's devoted and fragile wife, who claims she was seeking refuge from the household tension in the kitchen.",
+                    "Arthur Sterling": "The arrogant sole heir to the fortune, who insists he only arrived at the mansion moments before the body was found.",
+                    "Maria Rossi": "The meticulous and observant maid, who discovered the crime scene while delivering the afternoon tea service.",
+                    "Tommy Miller": "The stoic family driver, who spent the afternoon at the front of the house and greeted the son upon his arrival.",
+                    "Gardner Gary": "A reclusive new employee who avoids social interaction and was tending to the flowers near the study window."
+                }
+    },
+
+    "2" : {
+        "desc" : "In the quiet luxury of the Sterling estate, the master of the house, Reginald Sterling, has been found dead in his private study at 2:00 PM. Now, the player must navigate the conflicting stories of the five people present to determine who committed the crime during a narrow window of missing time.",
+        "char" : {
+                    "Eleanor Sterling": "The victim's devoted and fragile wife, who claims she was seeking refuge from the household tension in the kitchen.",
+                    "Arthur Sterling": "The arrogant sole heir to the fortune, who insists he only arrived at the mansion moments before the body was found.",
+                    "Maria Rossi": "The meticulous and observant maid, who discovered the crime scene while delivering the afternoon tea service.",
+                    "Tommy Miller": "The stoic family driver, who spent the afternoon at the front of the house and greeted the son upon his arrival.",
+                    "Gardner Gary": "A reclusive new employee who avoids social interaction and was tending to the flowers near the study window."
+                }
+    },
+
+    "3" : {
+        "desc" : "In the quiet luxury of the Sterling estate, the master of the house, Reginald Sterling, has been found dead in his private study at 2:00 PM. Now, the player must navigate the conflicting stories of the five people present to determine who committed the crime during a narrow window of missing time.",
+        "char" : {
+                    "Eleanor Sterling": "The victim's devoted and fragile wife, who claims she was seeking refuge from the household tension in the kitchen.",
+                    "Arthur Sterling": "The arrogant sole heir to the fortune, who insists he only arrived at the mansion moments before the body was found.",
+                    "Maria Rossi": "The meticulous and observant maid, who discovered the crime scene while delivering the afternoon tea service.",
+                    "Tommy Miller": "The stoic family driver, who spent the afternoon at the front of the house and greeted the son upon his arrival.",
+                    "Gardner Gary": "A reclusive new employee who avoids social interaction and was tending to the flowers near the study window."
+                }
+    },
+
+    "4" : {
+        "desc" : "In the quiet luxury of the Sterling estate, the master of the house, Reginald Sterling, has been found dead in his private study at 2:00 PM. Now, the player must navigate the conflicting stories of the five people present to determine who committed the crime during a narrow window of missing time.",
+        "char" : {
+                    "Eleanor Sterling": "The victim's devoted and fragile wife, who claims she was seeking refuge from the household tension in the kitchen.",
+                    "Arthur Sterling": "The arrogant sole heir to the fortune, who insists he only arrived at the mansion moments before the body was found.",
+                    "Maria Rossi": "The meticulous and observant maid, who discovered the crime scene while delivering the afternoon tea service.",
+                    "Tommy Miller": "The stoic family driver, who spent the afternoon at the front of the house and greeted the son upon his arrival.",
+                    "Gardner Gary": "A reclusive new employee who avoids social interaction and was tending to the flowers near the study window."
+                }
+    }
+}

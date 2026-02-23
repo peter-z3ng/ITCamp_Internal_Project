@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="size-full flex items-center justify-center bg-white">
+    <div className="min-h-screen flex items-center justify-center bg-white">
       <div className="flex flex-col items-center gap-8">
         <h1 className="text-6xl text-black">Murder Mystery Game</h1>
           <Link href="/levels">

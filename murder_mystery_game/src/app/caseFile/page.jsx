@@ -18,7 +18,7 @@ export default function CaseFilePage() {
             Case not found
           </h1>
           <button
-            onClick={() => router.push("/levels")}
+            onClick={() => router.push("/cases")}
             className="px-6 py-3 rounded-xl bg-red-800 hover:bg-red-700 transition font-semibold"
           >
             Back to Levels
@@ -59,7 +59,7 @@ export default function CaseFilePage() {
 
           <div className="mt-12 flex justify-between">
             <button
-              onClick={() => router.push("/levels")}
+              onClick={() => router.push("/cases")}
               className="px-6 py-3 cursor-pointer rounded-xl bg-zinc-700 hover:bg-zinc-600 transition font-medium"
             >
               Back

@@ -9,7 +9,7 @@ export default function Levels() {
   const storyList = Object.values(STORIES);
 
   const handleSelect = (storyId) => {
-    router.push(`/casefile?storyId=${storyId}`);
+    router.push(`/caseFile?storyId=${storyId}`);
   };
 
   return (

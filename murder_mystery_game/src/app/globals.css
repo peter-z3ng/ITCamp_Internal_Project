@@ -29,3 +29,27 @@ body {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   text-transform: uppercase;
 }
+
+.landing-title-pulse {
+  animation: landing-title-pulse 5s ease-in-out infinite;
+}
+
+@keyframes landing-title-pulse {
+  0% {
+    opacity: 0.92;
+    transform: scale(0.995);
+    filter: brightness(0.96);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.008);
+    filter: brightness(1.03);
+  }
+
+  100% {
+    opacity: 0.92;
+    transform: scale(0.995);
+    filter: brightness(0.96);
+  }
+}

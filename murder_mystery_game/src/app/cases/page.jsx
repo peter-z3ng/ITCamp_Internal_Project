@@ -9,12 +9,11 @@ export default function Levels() {
   const storyList = Object.values(STORIES);
 
   const handleSelect = (storyId) => {
-    router.push(`/casefile?storyId=${storyId}`);
+    router.push(`/caseFile?storyId=${storyId}`);
   };
 
   return (
     <div className="min-h-screen bg-black text-red-600 flex flex-col items-center px-6 py-12">
-      
       <Link href="/">
         <button className="mb-12 cursor-pointer text-red-500 hover:text-red-400 transition">
           ← Back

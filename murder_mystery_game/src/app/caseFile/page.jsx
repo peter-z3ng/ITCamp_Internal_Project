@@ -1,82 +1,164 @@
-"use client";
+'use client';
 
-import { useSearchParams, useRouter } from "next/navigation";
-import { STORIES } from "@/lib/stories";
+import Image from 'next/image';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { STORIES } from '@/lib/stories';
 
 export default function CaseFilePage() {
   const searchParams = useSearchParams();
-  const router = useRouter();
-
-  const storyId = searchParams.get("storyId");
-  const story = STORIES[storyId];
+  const storyId = searchParams.get('storyId');
+  const story = storyId ? STORIES[storyId] : null;
 
   if (!story) {
     return (
-      <div className="min-h-screen bg-zinc-950 text-white flex items-center justify-center px-6">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold mb-6 text-red-500">
-            Case not found
-          </h1>
-          <button
-            onClick={() => router.push("/levels")}
-            className="px-6 py-3 rounded-xl bg-red-800 hover:bg-red-700 transition font-semibold"
-          >
-            Back to Levels
-          </button>
-        </div>
+      <div className="min-h-screen bg-black text-red-500 flex items-center justify-center">
+        Case not found
       </div>
     );
   }
 
-  const { title, casefile } = story;
+  const suspects = Object.values(story.characters || {});
+  const suspectCount = suspects.length;
+
+  const templateMap = {
+    3: '/casefiles/casefile-3.png',
+    4: '/casefiles/casefile-4.png',
+    5: '/casefiles/casefile-5.png',
+  };
+
+  const suspectLayoutMap = {
+    3: [
+      { left: 40, top: 0 },
+      { left: 220, top: 0 },
+      { left: 130, top: 170 },
+    ],
+    4: [
+      { left: 0, top: 0 },
+      { left: 170, top: 0 },
+      { left: 340, top: 0 },
+      { left: 170, top: 170 },
+    ],
+    5: [
+      { left: 0, top: 0 },
+      { left: 170, top: 0 },
+      { left: 340, top: 0 },
+      { left: 85, top: 170 },
+      { left: 255, top: 170 },
+    ],
+  };
+
+  const templateSrc = templateMap[suspectCount] || templateMap[3];
+  const suspectPositions =
+    suspectLayoutMap[suspectCount] || suspectLayoutMap[3];
+
+  const displayTime =
+    story.timeline && Object.keys(story.timeline).length > 0
+      ? `${Object.keys(story.timeline)[0]} - ${
+          Object.keys(story.timeline)[Object.keys(story.timeline).length - 1]
+        }`
+      : story.setting?.time || 'Unknown';
+
+  const victimFoundLocation = story.setting?.location || 'Unknown';
+  const causeOfDeath = story.truth?.weapon || 'Unknown';
+  const overview = story.casefile?.overview?.trim() || '';
+  const objective = story.casefile?.objective?.trim() || '';
+  const headline = story.casefile?.headline || story.title || 'Case File';
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white px-6 py-16 flex justify-center">
-      <div className="w-full max-w-4xl">
+  <div className="relative w-screen overflow-hidden">
+    <Link
+      href="/levels"
+      className="absolute top-4 left-4 z-20 text-white text-[2vw] tracking-widest transition duration-300 hover:text-red-600 font-investigation"
+    >
+      ← Back
+    </Link>
 
-        <div className="bg-zinc-900 border border-red-900/40 rounded-2xl shadow-2xl shadow-red-900/20 p-10">
+    <div className="relative w-full">
+      <img
+        src={templateSrc}
+        alt="Case file template"
+        className="block w-full h-auto"
+      />
 
-          <h1 className="text-4xl font-bold mb-3">
-            {title}
-          </h1>
+      {/* Headline */}
+      <div className="absolute left-[15%] top-[8.5%] w-[52%] text-center text-[#2b1a12] font-serif font-bold text-[1.15vw] leading-tight">
+        {headline}
+      </div>
 
-          <h2 className="text-xl text-red-500 mb-8 tracking-wide">
-            {casefile.headline}
-          </h2>
+      {/* Case ID */}
+      <div className="absolute left-[22.8%] top-[18.2%] w-[18%] text-[#2b1a12] font-serif text-[0.95vw]">
+        {story.id}
+      </div>
 
-          <div className="space-y-6 text-zinc-300 leading-relaxed whitespace-pre-line">
-            {casefile.overview}
-          </div>
+      {/* Date / Time */}
+      <div className="absolute left-[20.8%] top-[23.2%] w-[24%] text-[#2b1a12] font-serif text-[0.95vw]">
+        {displayTime}
+      </div>
 
-          <div className="mt-10 p-6 rounded-xl bg-zinc-800/60 border border-red-900/30">
-            <h3 className="text-lg font-semibold text-red-500 mb-3">
-              Your Objective
-            </h3>
-            <p className="text-zinc-300 whitespace-pre-line">
-              {casefile.objective}
-            </p>
-          </div>
+      {/* Location */}
+      <div className="absolute left-[64.5%] top-[23.2%] w-[22%] text-[#2b1a12] font-serif text-[0.95vw]">
+        {story.setting?.location}
+      </div>
 
-          <div className="mt-12 flex justify-between">
-            <button
-              onClick={() => router.push("/levels")}
-              className="px-6 py-3 cursor-pointer rounded-xl bg-zinc-700 hover:bg-zinc-600 transition font-medium"
+      {/* Victim Name */}
+      <div className="absolute left-[13.6%] top-[34.4%] w-[28%] text-[#2b1a12] font-serif text-[0.95vw]">
+        {story.victim?.name}
+      </div>
+
+      {/* Victim Role */}
+      <div className="absolute left-[20.2%] top-[39.8%] w-[24%] text-[#2b1a12] font-serif text-[0.95vw]">
+        {story.victim?.role}
+      </div>
+
+      {/* Found Location */}
+      <div className="absolute left-[15%] top-[45%] w-[26%] text-[#2b1a12] font-serif text-[0.95vw]">
+        {victimFoundLocation}
+      </div>
+
+      {/* Cause of Death */}
+      <div className="absolute left-[24%] top-[50.4%] w-[24%] text-[#2b1a12] font-serif text-[0.95vw]">
+        {causeOfDeath}
+      </div>
+
+      {/* Overview */}
+      <div className="absolute left-[8.3%] top-[60.5%] w-[40%] text-[#2b1a12] font-serif text-[0.82vw] leading-[1.55] whitespace-pre-line">
+        {overview}
+      </div>
+
+      {/* Objective */}
+      <div className="absolute left-[7.3%] top-[84.5%] w-[42%] text-[#2b1a12] font-serif text-[0.8vw] leading-[1.45] whitespace-pre-line">
+        {objective}
+      </div>
+
+      <button className="absolute bottom-[1%] right-[5%] z-20 text-white text-[2vw] tracking-widest transition duration-300 hover:text-red-600 font-investigation">
+          BEGIN INVESTIGATION
+      </button>
+
+      {/* Suspects */}
+      <div className="absolute left-[54.3%] top-[33.2%] w-[33%] h-[36%]">
+        {suspects.map((suspect, index) => {
+          const pos = suspectPositions[index];
+          if (!pos) return null;
+
+          return (
+            <div
+              key={suspect.id}
+              className="absolute w-[120px] h-[140px] flex items-center justify-center text-center px-2"
+              style={{
+                left: `${pos.left}px`,
+                top: `${pos.top}px`,
+              }}
             >
-              Back
-            </button>
+              <span className="text-[#2b1a12] font-serif text-[0.8vw] leading-tight">
+                {suspect.name}
+              </span>
+            </div>
+          );
+        })}
 
-            <button
-              onClick={() =>
-                router.push(`/suspects?storyId=${storyId}`)
-              }
-              className="px-6 py-3 cursor-pointer rounded-xl bg-red-800 hover:bg-red-700 transition font-semibold shadow-lg shadow-red-900/40"
-            >
-              Interrogate
-            </button>
-          </div>
-
-        </div>
       </div>
     </div>
-  );
+  </div>
+);
 }

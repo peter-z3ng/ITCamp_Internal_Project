@@ -124,7 +124,17 @@ export default function Home() {
                   textShadow: "0 6px 20px rgba(0, 0, 0, 0.8)",
                 }}
               >
-                You Are Next
+                You're Next
+              </p>
+              <p
+                className={`${caesarDressing.className} absolute inset-0 flex items-center justify-center whitespace-nowrap text-[clamp(2.2rem,5.5vw,5.2rem)] uppercase tracking-[0.14em] text-white transition-opacity duration-200 ${
+                  isCancelHovered ? "opacity-100" : "opacity-0"
+                }`}
+                style={{
+                  textShadow: "0 6px 20px rgba(0, 0, 0, 0.8)",
+                }}
+              >
+                For now... you're safe
               </p>
             </div>
 

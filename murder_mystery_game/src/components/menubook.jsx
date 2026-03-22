@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { useMediaQuery } from '@react-hook/media-query';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const PAGE_WIDTH = 650;
 const PAGE_HEIGHT = 800;
@@ -86,39 +87,37 @@ export default function BookTestimonials({
                 Meow Meow Meow
               </div>
 
-              <div className="mt-10 text-sm leading-7">
-                <p>
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                </p>
+              <div className="mt-8 flex flex-col items-center gap-8">
+                <Link
+                  href="/caseone"
+                  className="group block w-full shrink-0 overflow-hidden rounded-[1.25rem] border border-[#6d4c38]/30 shadow-[0_14px_24px_rgba(70,40,20,0.22)] transition hover:-translate-y-1"
+                >
+                  <div className="relative aspect-[16/9] w-full">
+                    <Image
+                      src="/case1bg.png"
+                      alt="Open Case 1"
+                      fill
+                      className="object-cover transition duration-300 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                </Link>
+
+                <div className="flex-1 text-sm leading-7">
+                  <p>
+                    A fresh case file waits behind this scene. The image takes
+                    over the left side of the spread so it feels like a proper
+                    entry point into the investigation.
+                  </p>
+                  <p className="mt-6">
+                    Click the image to open the Case 1 page, then use the
+                    casefile button in the top right corner to open or close
+                    the modal evidence sheet.
+                  </p>
+                </div>
               </div>
-              <div className="mt-10 text-sm leading-7">
-                <p>
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                  Meow Meow Meow Meow Meow Meow
-                </p>
+
+              <div className="mt-6 text-center text-xs uppercase tracking-[0.24em] text-[#6d4c38]">
+                Click the image to enter Case 1
               </div>
             </div>
           </div>

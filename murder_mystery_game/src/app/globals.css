@@ -28,3 +28,10 @@ body {
 .font-investigation {
   font-family: var(--font-investigation) !important;
 }
+
+.casefile-line {
+  height: var(--casefile-line-height, auto);
+  display: flex;
+  align-items: flex-end;
+  line-height: 1;
+}

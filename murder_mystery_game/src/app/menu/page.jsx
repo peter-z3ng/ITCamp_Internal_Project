@@ -1,6 +1,6 @@
 'use client';
 
-import BookTestimonials from '@/components/ui/menubook';
+import BookTestimonials from '@/components/menubook';
 import { STORIES } from '@/lib/stories';
 
 export default function MenuPage() {

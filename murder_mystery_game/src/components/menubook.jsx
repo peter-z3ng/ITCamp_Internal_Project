@@ -90,15 +90,24 @@ export default function BookTestimonials({
               <div className="mt-8 flex flex-col items-center gap-8">
                 <Link
                   href="/caseone"
-                  className="group block w-full shrink-0 overflow-hidden rounded-[1.25rem] border border-[#6d4c38]/30 shadow-[0_14px_24px_rgba(70,40,20,0.22)] transition hover:-translate-y-1"
+                  className="group block w-full shrink-0 transition"
                 >
-                  <div className="relative aspect-[16/9] w-full">
+                  <div className="relative mx-auto aspect-[4/3] w-full max-w-[28rem]">
+                    <Image
+                      src="/imgframe.png"
+                      alt="Image frame"
+                      fill
+                      className="object-contain -translate-y-10 -translate-x-3"
+                    />
+
+                    <div className="absolute aspect-[16/10] inset-[10%] overflow-hidden w-[20rem] rounded-[0.3rem] translate-x-5.5 translate-y-4 rotate-1">
                     <Image
                       src="/case1bg.png"
                       alt="Open Case 1"
                       fill
-                      className="object-cover transition duration-300 group-hover:scale-[1.03]"
+                      className="object-cover transition duration-500 group-hover:scale-[1.2]"
                     />
+                    </div>
                   </div>
                 </Link>
 

@@ -6,8 +6,11 @@ import { STORIES } from "@/lib/stories";
 
 export default function Levels() {
   const router = useRouter();
+
+  // get all stories from stories.js
   const storyList = Object.values(STORIES);
 
+  // when story is selected, story ID will be passed inside query parameter
   const handleSelect = (storyId) => {
     router.push(`/casefile?storyId=${storyId}`);
   };

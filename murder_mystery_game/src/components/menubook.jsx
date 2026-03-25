@@ -6,18 +6,23 @@ import { useMediaQuery } from '@react-hook/media-query';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Cinzel, IM_Fell_English_SC } from "next/font/google";
+import { STORIES } from '@/lib/stories';
+
+const sterling = STORIES.sterling_estate;
+const ko = STORIES.knives_out;
+const itc = STORIES.sim_it_club;
 
 const PAGE_WIDTH = 650;
 const PAGE_HEIGHT = 800;
 
 const cinzel = Cinzel({
   subsets: ["latin"],
-  weight: "800",
+  weight: "400",
 });
 
 const imfell = IM_Fell_English_SC({
   subsets: ["latin"],
-  weight: "400",
+  weight: "400"
 });
 
 
@@ -140,12 +145,9 @@ export default function BookTestimonials({
                 backgroundRepeat: 'no-repeat',
               }}
             >
-              <h1 className="mt-4 text-center font-serif text-3xl font-bold tracking-wide">
-                Case 1
+              <h1 className={`${imfell.className} mt-8 mb-8 pb-4 text-center text-2xl text-[#5A0F0F] border-b border-[#5A0F0F]/40`}>
+                {sterling.title}
               </h1>
-              <div className="mt-6 border-b border-[#6d4c38]/40 pb-4 text-center text-sm italic">
-                The fucking case 1
-              </div>
 
               <div className="mt-8 flex flex-col items-center gap-8">
                 <Link
@@ -171,18 +173,11 @@ export default function BookTestimonials({
                   </div>
                 </Link>
 
-                <div className="flex-1 text-sm leading-7">
-                  <p>
-                    A fresh case file waits behind this scene. The image takes
-                    over the left side of the spread so it feels like a proper
-                    entry point into the investigation.
-                  </p>
-                  <p className="mt-6">
-                    Click the image to open the Case 1 page, then use the
-                    casefile button in the top right corner to open or close
-                    the modal evidence sheet.
-                  </p>
-                </div>
+                
+                <p className={`${cinzel.className} text-center text-m text-[#5A0F0F]`}>
+                  {sterling.casefile.headline}
+                </p>
+            
               </div>
 
               <div className="mt-6 text-center text-xs uppercase tracking-[0.24em] text-[#6d4c38]">
@@ -206,22 +201,7 @@ export default function BookTestimonials({
                 Case 2
               </h1>
               <div className="mt-6 border-b border-[#6d4c38]/40 pb-4 text-center text-sm italic">
-                MEOW
-              </div>
-              <div className="mt-10 text-sm leading-7">
-                <p>
-                  {"Meow Meow Meow Meow Meow\n".repeat(10)}
-                </p>
-              </div>
-              <div className="mt-10 text-sm leading-7">
-                <p>
-                  {"Meow Meow Meow Meow Meow\n".repeat(10)}
-                </p>
-              </div>
-              <div className="mt-10 text-sm leading-7">
-                <p>
-                  {"Meow Meow Meow Meow Meow\n".repeat(5)}
-                </p>
+                <h1>{sterling.title}</h1>
               </div>
             </div>
           </div>

@@ -7,11 +7,7 @@ import { STORIES } from '@/lib/stories';
 export default function AccusePage() {
   const searchParams = useSearchParams();
   const router = useRouter();
-
-  // get story ID from the query parameter
   const storyId = searchParams.get('storyId');
-
-  // get the selected story from stories.js
   const story = STORIES[storyId];
 
   const [modal, setModal] = useState(null);
@@ -24,14 +20,10 @@ export default function AccusePage() {
     );
   }
 
-  // get all characters from the selected story
   const CHARACTERS = Object.values(story.characters);
-
-  // get the murderer from the story
   const murdererId = story.truth.murderer;
 
   function handleAccuse(characterId) {
-    // if the character user clicked is murderer they win, if not try again
     if (characterId === murdererId) {
       setModal("correct");
     } else {

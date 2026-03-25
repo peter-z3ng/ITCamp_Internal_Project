@@ -7,10 +7,7 @@ export default function CaseFilePage() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  // get story ID from query parameter
   const storyId = searchParams.get("storyId");
-
-  // get the selected story from stories.js
   const story = STORIES[storyId];
 
   if (!story) {
@@ -21,7 +18,7 @@ export default function CaseFilePage() {
             Case not found
           </h1>
           <button
-            onClick={() => router.push("/cases")}
+            onClick={() => router.push("/levels")}
             className="px-6 py-3 rounded-xl bg-red-800 hover:bg-red-700 transition font-semibold"
           >
             Back to Levels
@@ -31,7 +28,6 @@ export default function CaseFilePage() {
     );
   }
 
-  // get the title and casefile from the story object
   const { title, casefile } = story;
 
   return (
@@ -63,7 +59,7 @@ export default function CaseFilePage() {
 
           <div className="mt-12 flex justify-between">
             <button
-              onClick={() => router.push("/cases")}
+              onClick={() => router.push("/levels")}
               className="px-6 py-3 cursor-pointer rounded-xl bg-zinc-700 hover:bg-zinc-600 transition font-medium"
             >
               Back

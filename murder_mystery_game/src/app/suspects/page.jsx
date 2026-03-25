@@ -1,65 +1,74 @@
 'use client'
 
-import { useSearchParams, useRouter } from 'next/navigation'
-import { useState, useEffect } from 'react'
-import { STORIES } from '@/lib/stories'
+import { useSearchParams, useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { STORIES } from '@/lib/stories';
 
 export default function SuspectsPage() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const storyId = searchParams.get('storyId');
+  const story = STORIES[storyId];
 
-  // get the story ID from query parameter
-  const searchParams = useSearchParams()
-  const router = useRouter()
-  const storyId = searchParams.get('storyId')
+  const STORAGE_KEY = `chat_sessions_${storyId}`;
+  const SELECTED_KEY = `selected_suspect_${storyId}`;
 
-  // get the story user selected
-  const story = STORIES[storyId]
+  const [selected, setSelected] = useState(null);
+  const [question, setQuestion] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [sessions, setSessions] = useState({});
 
-  const [selected, setSelected] = useState(null)
-  const [question, setQuestion] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [sessions, setSessions] = useState({})
-
-  // when page loads, get the previous messages and selected character from local storage
   useEffect(() => {
-    if (!storyId) return
+    if (!storyId) return;
 
-    const savedSessions = localStorage.getItem(`chat_sessions_${storyId}`)
-    const savedSelected = localStorage.getItem(`selected_suspect_${storyId}`)
+    const savedSessions = localStorage.getItem(STORAGE_KEY);
+    if (savedSessions) setSessions(JSON.parse(savedSessions));
 
-    if (savedSessions) setSessions(JSON.parse(savedSessions))
-    if (savedSelected) setSelected(savedSelected)
-  }, [storyId])
+    const savedSelected = localStorage.getItem(SELECTED_KEY);
+    if (savedSelected) setSelected(savedSelected);
+  }, [storyId]);
 
-  if (!storyId || !story) {
+  useEffect(() => {
+    if (!storyId) return;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
+  }, [sessions, storyId]);
+
+  useEffect(() => {
+    if (!selected || !storyId) return;
+    localStorage.setItem(SELECTED_KEY, selected);
+  }, [selected, storyId]);
+
+  if (!story) {
     return (
-      <div className="min-h-screen bg-black text-red-500 flex items-center justify-center">
+      <div className="min-h-screen bg-black text-red-500 flex items-center justify-center p-8">
         Story not found.
       </div>
-    )
+    );
   }
 
-  // get all the characters from the selected story
-  const CHARACTERS = Object.values(story.characters)
-
-  // get the previous messages locally
-  const messages = sessions[selected] || []
+  const CHARACTERS = Object.values(story.characters);
+  const messages = selected ? sessions[selected] || [] : [];
 
   async function askAI() {
-    if (!question || !selected) return
+    if (!question || !selected) return;
 
-    const userText = question
-    setQuestion('')
-    setLoading(true)
+    const userText = question;
+    setQuestion('');
 
-    // save the user message in react state and local storage
-    let updatedSessions = { ...sessions }
-    const prevMsgs = updatedSessions[selected] || []
-    updatedSessions[selected] = [...prevMsgs, { role: 'user', content: userText }]
+    setSessions(prev => {
+      const updated = { ...prev };
+      const prevMsgs = updated[selected] || [];
+      updated[selected] = [...prevMsgs, { role: 'user', content: userText }];
+      return updated;
+    });
 
-    setSessions(updatedSessions)
-    localStorage.setItem(`chat_sessions_${storyId}`, JSON.stringify(updatedSessions))
+    setLoading(true);
 
-    // call '/api/game' route and pass in story ID, character ID, user text and previous messages
+    const memoryMessages = [
+      ...(sessions[selected] || []),
+      { role: 'user', content: userText }
+    ];
+
     try {
       const res = await fetch('/api/game', {
         method: 'POST',
@@ -68,102 +77,125 @@ export default function SuspectsPage() {
           storyId,
           characterId: selected,
           question: userText,
-          memory: updatedSessions[selected],
+          memory: memoryMessages
         }),
-      })
+      });
 
-      // get AI response through API and save in react state and local storage
-      const json = await res.json()
+      const json = await res.json();
 
       const aiMsg = {
         role: 'assistant',
-        content: res.ok && !json.error ? json.answer : 'AI error',
-      }
+        content: res.ok && !json.error ? json.answer : (json.error || 'AI error')
+      };
 
-      updatedSessions = { ...updatedSessions }
-      updatedSessions[selected] = [...updatedSessions[selected], aiMsg]
-
-      setSessions(updatedSessions)
-      localStorage.setItem(`chat_sessions_${storyId}`, JSON.stringify(updatedSessions))
+      setSessions(prev => {
+        const updated = { ...prev };
+        const prevMsgs = updated[selected] || [];
+        updated[selected] = [...prevMsgs, aiMsg];
+        return updated;
+      });
 
     } catch {
-      const errorMsg = { role: 'assistant', content: 'Error contacting AI' }
-
-      updatedSessions = { ...updatedSessions }
-      updatedSessions[selected] = [...updatedSessions[selected], errorMsg]
-
-      setSessions(updatedSessions)
-      localStorage.setItem(`chat_sessions_${storyId}`, JSON.stringify(updatedSessions))
+      setSessions(prev => {
+        const updated = { ...prev };
+        const prevMsgs = updated[selected] || [];
+        updated[selected] = [...prevMsgs, { role: 'assistant', content: 'Error contacting AI' }];
+        return updated;
+      });
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
-  // when a character is clicked, it will be saved in both react state and local storage
-  function handleSelect(id) {
-    setSelected(id)
-    localStorage.setItem(`selected_suspect_${storyId}`, id)
-  }
-
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col items-center p-8 gap-8">
+    <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black text-white flex flex-col items-center p-8 gap-8">
 
-      <button
-        onClick={() => router.push('/cases')}
-        className="border border-red-600 px-6 py-2 rounded-xl text-red-500 cursor-pointer"
-      >
-        ← Back
-      </button>
+      <div className="w-full max-w-5xl">
+        <button
+          onClick={() => router.push('/cases')}
+          className="bg-black border cursor-pointer border-red-600 hover:bg-red-700 hover:border-red-500 transition-all px-6 py-2 rounded-xl font-semibold text-red-500 hover:text-white"
+        >
+          ← Back to Cases
+        </button>
+      </div>
 
-      <h1 className="text-2xl text-red-500">Interrogate</h1>
+      <h1 className="text-3xl font-bold tracking-wide text-red-500">
+        Interrogate the Suspects
+      </h1>
 
-      <div className="flex gap-4">
-        {CHARACTERS.map(s => (
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        {CHARACTERS.map((s) => (
           <button
             key={s.id}
-            onClick={() => handleSelect(s.id)}
-            className={`p-4 border rounded-xl cursor-pointer ${
-              selected === s.id ? 'bg-red-700' : 'bg-zinc-900'
+            onClick={() => setSelected(s.id)}
+            className={`w-56 h-36 rounded-2xl border p-4 text-left transition-all cursor-pointer shadow-lg ${
+              selected === s.id
+                ? "bg-red-700/90 border-red-500 scale-105"
+                : "bg-zinc-900 border-zinc-700 hover:border-red-600 hover:scale-[1.02]"
             }`}
           >
-            {s.name}
+            <div className="text-xl font-bold">{s.name}</div>
+            <div className="text-sm mt-1 text-zinc-400">{s.role}</div>
+            <div className="mt-3 text-xs text-zinc-500">Click to interrogate</div>
           </button>
         ))}
       </div>
 
-      <div className="w-full max-w-2xl h-80 overflow-y-auto border p-4">
-        {!selected && <p>Select a suspect</p>}
+      <div className="w-full max-w-3xl h-80 bg-black/60 rounded-2xl border border-zinc-700 p-4 overflow-y-auto shadow-inner">
+
+        {messages.length === 0 && selected && (
+          <div className="text-center text-zinc-500 mt-24">
+            Start questioning {CHARACTERS.find(s => s.id === selected)?.name}.
+          </div>
+        )}
+
+        {!selected && (
+          <div className="text-center text-zinc-500 mt-24">
+            Select a suspect and start questioning them.
+          </div>
+        )}
 
         {messages.map((m, i) => (
-          <div key={i} className={m.role === 'user' ? 'text-right' : ''}>
-            <p><b>{m.role}:</b> {m.content}</p>
+          <div
+            key={i}
+            className={`mb-3 flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
+          >
+            <div className={`px-4 py-2 rounded-xl max-w-[80%] text-sm leading-relaxed ${
+              m.role === "user" ? "bg-red-700 text-white" : "bg-zinc-800 text-zinc-200"
+            }`}>
+              <div className="text-xs opacity-60 mb-1">
+                {m.role === "user" ? "You" : "Suspect"}
+              </div>
+              {m.content}
+            </div>
           </div>
         ))}
       </div>
 
-      <div className="flex w-full max-w-2xl gap-2">
+      <div className="flex gap-2 w-full max-w-3xl">
         <input
+          className="flex-1 rounded-xl bg-zinc-900 border border-zinc-700 px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-red-600"
           value={question}
-          onChange={e => setQuestion(e.target.value)}
+          onChange={(e) => setQuestion(e.target.value)}
+          placeholder={selected ? "Ask your question..." : "Select a suspect first"}
           disabled={!selected}
-          className="flex-1 border p-2"
         />
 
         <button
           onClick={askAI}
           disabled={loading || !selected}
-          className="bg-red-700 px-4 cursor-pointer"
+          className="bg-red-700 hover:bg-red-600 transition-colors px-6 rounded-xl font-semibold disabled:opacity-50 cursor-pointer"
         >
-          {loading ? '...' : 'Send'}
+          {loading ? "Thinking..." : "Send"}
         </button>
       </div>
 
       <button
         onClick={() => router.push(`/accuse?storyId=${storyId}`)}
-        className="border border-red-600 px-6 py-3 rounded-xl cursor-pointer"
+        className="mt-6 cursor-pointer bg-black border border-red-600 hover:bg-red-700 hover:border-red-500 transition-all px-8 py-3 rounded-2xl font-bold text-red-500 hover:text-white"
       >
         Accuse
       </button>
     </div>
-  )
+  );
 }

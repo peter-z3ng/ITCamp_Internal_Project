@@ -87,6 +87,8 @@ export default function BookTestimonials({
         }}
 
         >
+
+          {/* Main menu page*/}
           <div className="flex h-full w-full items-center justify-end">
             <div
               className="translate-x-35 translate-y-2 flex h-[96%] w-[78%] flex-col justify-start px-10 py-10 text-[#2b1d14]"
@@ -105,10 +107,9 @@ export default function BookTestimonials({
                     alt="Back to main menu"
                     width={400}
                     height={600}
-                    className="object-contain hover:scale-[1.05]"
+                    className="object-contain hover:scale-[1.5]"
                   />
                 </Link>
-
                 <h1 className={`${imfell.className} text-center text-4xl text-[#5A0F0F] -translate-y-5`}>
                   Main Menu
                 </h1>
@@ -116,7 +117,7 @@ export default function BookTestimonials({
             </div>
           </div>
 
-          {/* Right index page */}
+          {/* Cases page */}
           <div className="flex h-full w-full items-center justify-start">
             <div
               className="-translate-x-3 flex translate-y-2 h-[96%] w-[78%] flex-col px-12 py-10 text-[#2b1d14]"
@@ -134,7 +135,7 @@ export default function BookTestimonials({
             </div>
           </div>
 
-          {/* Left page */}
+          {/* Case 1 left page */}
           <div className="flex h-full w-full items-center justify-end">
             <div
               className="translate-x-35 translate-y-2 flex h-[96%] w-[78%] flex-col justify-start px-10 py-10 text-[#2b1d14]"
@@ -145,16 +146,16 @@ export default function BookTestimonials({
                 backgroundRepeat: 'no-repeat',
               }}
             >
-              <h1 className={`${imfell.className} mt-8 mb-8 pb-4 text-center text-2xl text-[#5A0F0F] border-b border-[#5A0F0F]/40`}>
+              <h1 className={`${imfell.className} mt-12 mb-8 pb-6 text-center text-2xl text-[#5A0F0F] border-b border-[#5A0F0F]/40`}>
                 {sterling.title}
               </h1>
 
-              <div className="mt-8 flex flex-col items-center gap-8">
+              <div className="mt-8 flex flex-col items-center gap-6">
                 <Link
                   href="/caseone"
                   className="group block w-full shrink-0 transition"
                 >
-                  <div className="relative mx-auto aspect-[4/3] w-full max-w-[28rem]">
+                  <div className="relative mx-auto aspect-4/3 w-full max-w-28rem">
                     <Image
                       src="/imgframe.png"
                       alt="Image frame"
@@ -162,9 +163,9 @@ export default function BookTestimonials({
                       className="object-contain -translate-y-10 -translate-x-3"
                     />
 
-                    <div className="absolute aspect-[16/10] inset-[10%] overflow-hidden w-[20rem] rounded-[0.3rem] translate-x-5.5 translate-y-4 rotate-1">
+                    <div className="absolute aspect-16/10 inset-[10%] overflow-hidden w-[20rem] rounded-[0.3rem] translate-x-5.5 translate-y-4 rotate-1">
                     <Image
-                      src="/case1bg.png"
+                      src="/caseone.png"
                       alt="Open Case 1"
                       fill
                       className="object-cover transition duration-500 group-hover:scale-[1.2]"
@@ -172,21 +173,24 @@ export default function BookTestimonials({
                     </div>
                   </div>
                 </Link>
-
-                
-                <p className={`${cinzel.className} text-center text-m text-[#5A0F0F]`}>
-                  {sterling.casefile.headline}
-                </p>
-            
               </div>
-
-              <div className="mt-6 text-center text-xs uppercase tracking-[0.24em] text-[#6d4c38]">
-                Click the image to enter Case 1
+              <div className="flex flex-col items-center gap-6 mt-6">
+                <p className={`${cinzel.className} -mt-5 text-center text-sm text-[#5A0F0F]`}>
+                    {sterling.casefile.headline}
+                </p>
+                <div className="transition-all duration-300 hover:scale-0 hover:opacity-0">
+                  <Image
+                        src="/paperweight.png"
+                        alt="Heavy paperweight"
+                        width="80"
+                        height="100"
+                      />
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Right index page */}
+          {/* Case 1 right page */}
           <div className="flex h-full w-full items-center justify-start">
             <div
               className="-translate-x-3 flex translate-y-2 h-[96%] w-[78%] flex-col px-12 py-10 text-[#2b1d14]"
@@ -197,16 +201,17 @@ export default function BookTestimonials({
                 backgroundRepeat: 'no-repeat',
               }}
             >
-              <h1 className="mt-4 text-center font-serif text-3xl font-bold tracking-wide">
-                Case 2
-              </h1>
-              <div className="mt-6 border-b border-[#6d4c38]/40 pb-4 text-center text-sm italic">
-                <h1>{sterling.title}</h1>
-              </div>
+              <p className={`${imfell.className} mt-18 text-center text-m text-[#5A0F0F] leading-8`}>
+                  {sterling.casefile.overview}
+              </p>
+              <p className={`${cinzel.className} mt-6 text-center text-xs text-[#5A0F0F]/80 leading-6`}>
+                  <h1 className="font-bold text-xl">Objective</h1>
+                  {sterling.casefile.objective}
+              </p>
             </div>
           </div>
 
-          {/* Left intro page */}
+          {/* Case 2 left page */}
           <div className="flex h-full w-full items-center justify-end">
             <div
               className="translate-x-35 translate-y-2 flex h-[96%] w-[78%] flex-col justify-start px-10 py-10 text-[#2b1d14]"
@@ -217,22 +222,51 @@ export default function BookTestimonials({
                 backgroundRepeat: 'no-repeat',
               }}
             >
-              <h1 className="mt-4 text-center font-serif text-3xl font-bold tracking-wide">
-                Case 3
+              <h1 className={`${imfell.className} mt-12 mb-8 pb-6 text-center text-2xl text-[#5A0F0F] border-b border-[#5A0F0F]/40`}>
+                {ko.title}
               </h1>
-              <div className="mt-6 border-b border-[#6d4c38]/40 pb-4 text-center text-sm italic">
-                67
-              </div>
 
-              <div className="mt-10 text-sm leading-7">
-                <p>
-                  {"67 67 67 67 67 67 67 67 67 67\n".repeat(30)}
+              <div className="mt-8 flex flex-col items-center gap-6">
+                <Link
+                  href="/casetwo"
+                  className="group block w-full shrink-0 transition"
+                >
+                  <div className="relative mx-auto aspect-4/3 w-full max-w-28rem">
+                    <Image
+                      src="/imgframe.png"
+                      alt="Image frame"
+                      fill
+                      className="object-contain -translate-y-10 -translate-x-3"
+                    />
+
+                    <div className="absolute aspect-16/10 inset-[10%] overflow-hidden w-[20rem] rounded-[0.3rem] translate-x-5.5 translate-y-4 rotate-1">
+                    <Image
+                      src="/casetwo.png"
+                      alt="Open Case 2"
+                      fill
+                      className="object-cover transition duration-500 group-hover:scale-[1.2]"
+                    />
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="flex flex-col items-center gap-6 mt-6">
+                <p className={`${cinzel.className} -mt-5 text-center text-sm text-[#5A0F0F]`}>
+                    {ko.casefile.headline}
                 </p>
+                <div className="transition-all duration-300 hover:scale-0 hover:opacity-0">
+                  <Image
+                        src="/paperweight.png"
+                        alt="Heavy paperweight"
+                        width="80"
+                        height="100"
+                      />
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Right index page */}
+          {/* Case 2 right page */}
           <div className="flex h-full w-full items-center justify-start">
             <div
               className="-translate-x-3 flex translate-y-2 h-[96%] w-[78%] flex-col px-12 py-10 text-[#2b1d14]"
@@ -243,12 +277,89 @@ export default function BookTestimonials({
                 backgroundRepeat: 'no-repeat',
               }}
             >
-              <h1 className="mt-4 text-center font-serif text-3xl font-bold tracking-wide">
-                Case 4
+              <p className={`${imfell.className} mt-18 text-center text-m text-[#5A0F0F] leading-8`}>
+                  {ko.casefile.overview}
+              </p>
+              <p className={`${cinzel.className} mt-6 text-center text-xs text-[#5A0F0F]/80 leading-6`}>
+                  <h1 className="font-bold text-xl">Objective</h1>
+                  {ko.casefile.objective}
+              </p>
+            </div>
+          </div>
+
+          {/* Case 3 left page */}
+          <div className="flex h-full w-full items-center justify-end">
+            <div
+              className="translate-x-35 translate-y-2 flex h-[96%] w-[78%] flex-col justify-start px-10 py-10 text-[#2b1d14]"
+              style={{
+                backgroundImage: "url('/leftpaper.png')",
+                backgroundSize: '100% 100%',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+              }}
+            >
+              <h1 className={`${imfell.className} mt-12 mb-8 pb-6 text-center text-2xl text-[#5A0F0F] border-b border-[#5A0F0F]/40`}>
+                {itc.title}
               </h1>
-              <h1 className="mt-80 text-center font-serif text-xl text-[#B22222] font-light tracking-wide">
-                will continue if someone die...
-              </h1>
+
+              <div className="mt-8 flex flex-col items-center gap-6">
+                <Link
+                  href="/casethree"
+                  className="group block w-full shrink-0 transition"
+                >
+                  <div className="relative mx-auto aspect-4/3 w-full max-w-28rem">
+                    <Image
+                      src="/imgframe.png"
+                      alt="Image frame"
+                      fill
+                      className="object-contain -translate-y-10 -translate-x-3"
+                    />
+
+                    <div className="absolute aspect-16/10 inset-[10%] overflow-hidden w-[20rem] rounded-[0.3rem] translate-x-5.5 translate-y-4 rotate-1">
+                    <Image
+                      src="/casethree.png"
+                      alt="Open Case 3"
+                      fill
+                      className="object-cover transition duration-500 group-hover:scale-[1.2]"
+                    />
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="flex flex-col items-center gap-6 mt-6">
+                <p className={`${cinzel.className} -mt-5 text-center text-sm text-[#5A0F0F]`}>
+                    {itc.casefile.headline}
+                </p>
+                <div className="transition-all duration-300 hover:scale-0 hover:opacity-0">
+                  <Image
+                        src="/paperweight.png"
+                        alt="Heavy paperweight"
+                        width="80"
+                        height="100"
+                      />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Case 2 right page */}
+          <div className="flex h-full w-full items-center justify-start">
+            <div
+              className="-translate-x-3 flex translate-y-2 h-[96%] w-[78%] flex-col px-12 py-10 text-[#2b1d14]"
+              style={{
+                backgroundImage: "url('/rightpaper.png')",
+                backgroundSize: '100% 100%',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+              }}
+            >
+              <p className={`${imfell.className} mt-18 text-center text-m text-[#5A0F0F] leading-7`}>
+                  {itc.casefile.overview}
+              </p>
+              <p className={`${cinzel.className} mt-6 text-center text-xs text-[#5A0F0F]/80 leading-6`}>
+                  <h1 className="font-bold text-xl">Objective</h1>
+                  {itc.casefile.objective}
+              </p>
             </div>
           </div>
         </HTMLFlipBook>

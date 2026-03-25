@@ -376,7 +376,7 @@ When you catch the mastermind in a lie they cannot explain, make your accusation
   },
   sim_it_club: {
     id: 'sim_it_club',
-    title: 'Fatal Error at the SIM IT Club',
+    title: 'Fatal Error at the SIM IT CLUB',
 
     casefile: {
       headline: 'IT Club President Found Dead During Workshop Planning Break',

@@ -45,18 +45,36 @@ export default function CaseOne() {
   const actionButtonClassName = `${caesarDressing.className} text-4xl tracking-[0.14em] text-white transition hover:text-[#B22222]`;
 
   return (
-    <main className="relative min-h-dvh overflow-hidden bg-black text-white">
+    <main className="relative w-full min-w-5xl aspect-video">
       <Image
         src="/caseonebg.png"
-        alt="Case 1 background"
+        alt="Background"
         fill
         priority
         className="object-cover"
       />
 
+      <Link
+        href="/interrogation"
+        className="group absolute z-10 top-[55%] right-[37%] w-[clamp(80px,14%,200px)] aspect-[3/4]"
+      >
+        <Image
+          src="/c_assets/son_idle.png"
+          alt="Son idle"
+          fill
+          className="object-contain transition-opacity duration-300 group-hover:opacity-0"
+        />
+        <Image
+          src="/c_assets/son_hover.png"
+          alt="Son hover"
+          fill
+          className="object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        />
+      </Link>
+
       <div className="absolute inset-0 bg-black/25" />
 
-      <div className="relative z-10 flex min-h-dvh flex-col">
+      <div className="relative flex min-h-dvh flex-col">
         <div className="relative flex items-start justify-center px-6 py-6 md:px-10">
 
           <button
@@ -72,26 +90,10 @@ export default function CaseOne() {
             />
           </button>
 
-          {/* Son */}
-          <Link
-            href="/interrogation"
-            className="group relative w-fit"
-          >
-            <Image
-              src="/c_assets/son_idle.png"
-              alt="Son idle"
-              width={200}
-              height={200}
-              className="fixed right-120 bottom-40 transition-opacity duration-300 group-hover:opacity-0"
-            />
-            <Image
-              src="/c_assets/son_hover.png"
-              alt="Son hover"
-              width={200}
-              height={200}
-              className="fixed right-120 bottom-40 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-            />
-          </Link>
+          
+          
+
+          
 
           {/* Wife */}
           <Link
@@ -103,7 +105,7 @@ export default function CaseOne() {
               alt="Wife idle"
               width={200}
               height={200}
-              className="fixed left-43 bottom-25 transition-opacity duration-300 group-hover:opacity-0"
+              className="absolute left-[10%] bottom-[10%] transition-opacity duration-300 group-hover:opacity-0"
             />
             <Image
               src="/c_assets/wife_hover.png"

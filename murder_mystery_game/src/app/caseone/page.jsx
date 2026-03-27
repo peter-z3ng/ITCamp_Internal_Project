@@ -48,51 +48,33 @@ export default function CaseOne() {
     <main className="min-h-dvh w-full bg-black flex items-center justify-center overflow-hidden">
       <div className="relative w-full max-w-[2000px] min-w-[900px] aspect-[16/9] overflow-hidden">
           <Image
-            src="/caseonebg.png"
+            src="/caseone.png"
             alt="Background"
             fill
             priority
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-black/25" />
 
           {/* Son */}
           <Link
             href="/interrogation"
-            className="group absolute z-10 top-[50%] right-[37%] w-[clamp(10%,14%,14%)] aspect-[3/4]"
+            className="group absolute z-10 top-[50%] right-[32%] w-[clamp(10%,14%,14%)] aspect-[3/4]"
           >
             <Image
               src="/c_assets/son_idle.png"
               alt="Son idle"
               fill
-              className="object-contain transition-opacity duration-300 group-hover:opacity-0"
+              className="object-contain transition-opacity duration-300 ease-in group-hover:opacity-0"
             />
             <Image
               src="/c_assets/son_hover.png"
               alt="Son hover"
               fill
-              className="object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              className="object-contain opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100"
             />
           </Link>
 
-          {/* Wife */}
-          <Link
-            href="/interrogation"
-            className="group absolute z-10 top-[55%] left-[18%] w-[clamp(10%,14%,14%)] aspect-[3/4] -rotate-3"
-          >
-            <Image
-              src="/c_assets/wife_idle.png"
-              alt="Wife idle"
-              fill
-              className="object-contain transition-opacity duration-300 group-hover:opacity-0"
-            />
-            <Image
-              src="/c_assets/wife_hover.png"
-              alt="Wife hover"
-              fill
-              className="object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-            />
-          </Link>
+          
 
           {/* Driver */}
           <Link
@@ -122,13 +104,51 @@ export default function CaseOne() {
               src="/c_assets/maid_idle.png"
               alt="Maid idle"
               fill
-              className="object-contain transition-opacity duration-300 group-hover:opacity-0"
+              className="object-contain transition-opacity duration-300 ease-in group-hover:opacity-0"
             />
             <Image
               src="/c_assets/maid_hover.png"
               alt="Maid hover"
               fill
-              className="object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              className="object-contain opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100"
+            />
+          </Link>
+
+          {/* Wife */}
+          <Link
+            href="/interrogation"
+            className="group absolute z-10 top-[55%] left-[15%] w-[clamp(10%,14%,14%)] aspect-[3/4] -rotate-5"
+          >
+            <Image
+              src="/c_assets/wife_idle.png"
+              alt="Wife idle"
+              fill
+              className="object-contain transition-opacity duration-300 ease-in group-hover:opacity-0"
+            />
+            <Image
+              src="/c_assets/wife_hover.png"
+              alt="Wife hover"
+              fill
+              className="object-contain opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100"
+            />
+          </Link>
+
+          {/* Gardener */}
+          <Link
+            href="/interrogation"
+            className="group absolute z-10 bottom-[3%] left-[5%] w-[clamp(10%,14%,14%)] aspect-[3/4] -rotate-3"
+          >
+            <Image
+              src="/c_assets/gardener_idle.png"
+              alt="Wife idle"
+              fill
+              className="object-contain transition-opacity duration-300 ease-in group-hover:opacity-0"
+            />
+            <Image
+              src="/c_assets/gardener_hover.png"
+              alt="Wife hover"
+              fill
+              className="object-contain opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100"
             />
           </Link>
 
@@ -145,18 +165,10 @@ export default function CaseOne() {
                 <Image
                     src="/casefiletoggle.png"
                     alt="Casefile"
-                    width="100"
-                    height="50"
+                    width="80"
+                    height="100"
                 />
               </button>
-
-              
-              
-
-              
-
-              
-              
             </div>
 
             <div className="flex flex-1 items-end px-6 pb-10 md:px-10">
@@ -188,8 +200,8 @@ export default function CaseOne() {
                 onClick={() => setIsCasefileOpen(false)}
               />
 
-              <div className="relative z-10 flex w-full max-w-4xl flex-col items-center">
-                  <div className="relative aspect-4/3 w-4xl">
+              <div className="relative z-10 flex w-full flex-col items-center">
+                  <div className="relative aspect-4/3 w-[60%]">
                     <Image
                       src="/casefileone.png"
                       alt="Casefile One"

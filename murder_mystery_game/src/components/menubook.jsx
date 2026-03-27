@@ -90,31 +90,20 @@ export default function BookTestimonials({
 
           {/* Main menu page*/}
           <div className="flex h-full w-full items-center justify-end">
-            <div
-              className="translate-x-35 translate-y-2 flex h-[96%] w-[78%] flex-col justify-start px-10 py-10 text-[#2b1d14]"
-              style={{
-                backgroundImage: "url('/leftpaper.png')",
-                backgroundSize: '100% 100%',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-              }}
-            >
-
-              <div className="flex flex-col items-center mt-8">
-                <Link href="/" className="group block">
+              <div className="flex flex-col items-center translate-x-20">
+                <Link href="/">
                   <Image
                     src="/backtomenu.png"
                     alt="Back to main menu"
-                    width={400}
+                    width={520}
                     height={600}
-                    className="object-contain hover:scale-[1.5]"
+                    className="object-contain hover:scale-[1.1]"
                   />
                 </Link>
-                <h1 className={`${imfell.className} text-center text-4xl text-[#5A0F0F] -translate-y-5`}>
+                <h1 className={`${imfell.className} text-center text-4xl text-[#5A0F0F] -translate-y-42`}>
                   Main Menu
                 </h1>
               </div>
-            </div>
           </div>
 
           {/* Cases page */}
@@ -165,7 +154,7 @@ export default function BookTestimonials({
 
                     <div className="absolute aspect-16/10 inset-[10%] overflow-hidden w-[20rem] rounded-[0.3rem] translate-x-5.5 translate-y-4 rotate-1">
                     <Image
-                      src="/caseonebg.png"
+                      src="/caseonepreview.png"
                       alt="Open Case 1"
                       fill
                       className="object-cover transition duration-500 group-hover:scale-[1.2]"
@@ -241,7 +230,7 @@ export default function BookTestimonials({
 
                     <div className="absolute aspect-16/10 inset-[10%] overflow-hidden w-[20rem] rounded-[0.3rem] translate-x-5.5 translate-y-4 rotate-1">
                     <Image
-                      src="/casetwo.png"
+                      src="/casetwopreview.png"
                       alt="Open Case 2"
                       fill
                       className="object-cover transition duration-500 group-hover:scale-[1.2]"

@@ -26,10 +26,10 @@ const CHARACTER_ASSETS = {
     gardener: "/c_assets/gardener_ir.png",
   },
   knives_out: {
-    nurse: "/c_assets/marta.png",
-    grandson: "/c_assets/hugh.png",
-    daughter: "/c_assets/lin.png",
-    son: "/c_assets/walt.png",
+    nurse: "/c_assets/marta_ir.png",
+    grandson: "/c_assets/hugh_ir.png",
+    daughter: "/c_assets/lin_ir.png",
+    son: "/c_assets/walt_ir.png",
   },
 };
 
@@ -42,7 +42,10 @@ const CHARACTER_POSITIONS = {
     gardener: "left-[36%] top-[29%] w-[clamp(10%,25%,25%)] aspect-[3/4]",
   },
   knives_out: {
-    nurse: "left-1/2 top-[56%] w-[28rem] -translate-x-1/2 -translate-y-1/2",
+    nurse: "left-[40%] top-[34.4%] w-[clamp(10%,20%,20%)] aspect-[3/4]",
+    grandson: "left-[39%] top-[38%] w-[clamp(10%,22%,22%)] aspect-[3/4]",
+    daughter: "left-[40%] top-[34.5%] w-[clamp(10%,20%,20%)] aspect-[3/4]",
+    son: "left-[37.5%] top-[26%] w-[clamp(10%,25%,25%)] aspect-[3/4]",
   },
 };
 

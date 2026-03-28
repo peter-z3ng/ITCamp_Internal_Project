@@ -49,7 +49,7 @@ export default function CaseTwo() {
 
     const timer = window.setTimeout(() => {
       setShowIntroPanel(false);
-      router.replace("/caseone");
+      router.replace("/casetwo");
     }, 3000);
 
     return () => window.clearTimeout(timer);

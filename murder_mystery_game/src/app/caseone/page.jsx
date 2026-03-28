@@ -3,9 +3,14 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Caesar_Dressing } from "next/font/google";
+import { Caesar_Dressing, Nosifer } from "next/font/google";
 
 const caesarDressing = Caesar_Dressing({
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const nosifer = Nosifer({
   subsets: ["latin"],
   weight: "400",
 });
@@ -171,24 +176,16 @@ export default function CaseOne() {
               </button>
             </div>
 
-            <div className="flex flex-1 items-end px-6 pb-10 md:px-10">
-              <div
-                className={`max-w-xl rounded-[2rem] border border-white/20 bg-black/30 p-6 backdrop-blur-[3px] transition-all duration-700 md:p-8 ${
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className={`w-full z-20 transition-all duration-700 ${
                   showIntroPanel
                     ? "translate-y-0 opacity-100"
-                    : "pointer-events-none translate-y-8 opacity-0"
+                    : "pointer-events-none translate-y-4 opacity-0"
                 }`}
               >
-                <p className="text-sm uppercase tracking-[0.35em] text-white/80">
-                  Case 1
-                </p>
-                <h1 className="mt-3 text-4xl font-semibold md:text-6xl">
-                  Investigation Room
+                <h1 className={`${nosifer.className} text-center text-6xl text-[#5A0F0F]`}>
+                  The Murder at the Sterling Estate
                 </h1>
-                <p className="mt-4 max-w-lg text-sm leading-7 text-white/85 md:text-base">
-                  Review the scene, open the casefile when you need it, and move
-                  between clues from the menu book.
-                </p>
               </div>
             </div>
           </div>

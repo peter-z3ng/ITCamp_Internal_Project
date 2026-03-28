@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -55,6 +56,12 @@ export default function InterrogationPage() {
   const searchParams = useSearchParams();
   const storyId = searchParams.get("storyId");
   const characterId = searchParams.get("characterId");
+  const storageKey =
+    storyId && characterId ? `interrogation_chat_${storyId}_${characterId}` : null;
+
+  const [question, setQuestion] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [messages, setMessages] = useState([]);
 
   const characterPosition =
   CHARACTER_POSITIONS[storyId]?.[characterId] ||
@@ -65,6 +72,63 @@ export default function InterrogationPage() {
   const characterImage =
     storyId && characterId ? CHARACTER_ASSETS[storyId]?.[characterId] : null;
   const backHref = storyId ? STORY_ROUTES[storyId] || "/menu" : "/menu";
+
+  useEffect(() => {
+    if (!storageKey) return;
+
+    const savedMessages = localStorage.getItem(storageKey);
+    if (savedMessages) {
+      setMessages(JSON.parse(savedMessages));
+      return;
+    }
+
+    setMessages([]);
+  }, [storageKey]);
+
+  useEffect(() => {
+    if (!storageKey) return;
+    localStorage.setItem(storageKey, JSON.stringify(messages));
+  }, [messages, storageKey]);
+
+  async function askAI() {
+    if (!question.trim() || !storyId || !characterId) return;
+
+    const userText = question.trim();
+    const nextMessages = [...messages, { role: "user", content: userText }];
+    setQuestion("");
+    setMessages(nextMessages);
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/game", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          storyId,
+          characterId,
+          question: userText,
+          memory: nextMessages,
+        }),
+      });
+
+      const json = await res.json();
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: res.ok && !json.error ? json.answer : json.error || "AI error",
+        },
+      ]);
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: "Error contacting AI." },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   if (!story || !character) {
     return (
@@ -123,6 +187,71 @@ export default function InterrogationPage() {
               Character render not available.
             </div>
           )}
+        </div>
+
+        <div className="absolute right-[4%] top-[10%] z-20 flex h-[78%] w-[30%] min-w-[22rem] flex-col rounded-[2rem] border border-white/10 bg-black/55 p-5 text-white backdrop-blur-md">
+          <div className="border-b border-white/10 pb-4">
+            <h1 className={`${cinzel.className} text-3xl text-red-200`}>
+              {character.name}
+            </h1>
+            <p className="mt-2 text-sm text-zinc-300">
+              Ask questions and they will only answer from their own knowledge in this case.
+            </p>
+          </div>
+
+          <div className="mt-4 flex-1 space-y-3 overflow-y-auto pr-2">
+            {messages.length === 0 ? (
+              <div className="flex h-full items-center justify-center text-center text-sm leading-7 text-zinc-400">
+                Start the interrogation. Ask about the timeline, alibi, or what they saw.
+              </div>
+            ) : (
+              messages.map((message, index) => (
+                <div
+                  key={`${message.role}-${index}`}
+                  className={`flex ${
+                    message.role === "user" ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  <div
+                    className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-7 ${
+                      message.role === "user"
+                        ? "bg-red-800 text-white"
+                        : "bg-zinc-900/90 text-zinc-100"
+                    }`}
+                  >
+                    <div className="mb-1 text-[11px] uppercase tracking-[0.18em] opacity-60">
+                      {message.role === "user" ? "You" : character.name}
+                    </div>
+                    <p>{message.content}</p>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+
+          <div className="mt-4 flex gap-3">
+            <input
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  askAI();
+                }
+              }}
+              placeholder={`Question ${character.name}...`}
+              disabled={loading}
+              className="flex-1 rounded-xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-red-700"
+            />
+            <button
+              type="button"
+              onClick={askAI}
+              disabled={loading || !question.trim()}
+              className="rounded-xl bg-red-800 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {loading ? "..." : "Send"}
+            </button>
+          </div>
         </div>
       </div>
     </main>

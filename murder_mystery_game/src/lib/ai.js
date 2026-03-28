@@ -53,6 +53,7 @@ ${subtleSurface || "None"}
 
 export async function interrogateCharacter({ story, characterId, memory = [], question }) {
   if (!story) return `Error: story "${story}" not found.`;
+  if (!process.env.OPENAI_API_KEY) return "Error: OPENAI_API_KEY is not set on the server.";
 
   const character = story.characters?.[characterId];
   if (!character) return `Error: character "${characterId}" not found in story "${story.title}".`;
@@ -97,6 +98,6 @@ Rules:
     return response.choices?.[0]?.message?.content?.trim() || "No response from AI.";
   } catch (err) {
     console.error("Error contacting OpenAI:", err);
-    return "Error contacting AI.";
+    return "Error: failed to contact OpenAI.";
   }
 }

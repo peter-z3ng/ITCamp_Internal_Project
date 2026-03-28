@@ -184,13 +184,6 @@ export default function InterrogationPage() {
           className="object-cover"
         />
 
-        <Link
-          href={backHref}
-          className={`${caesarDressing.className} absolute left-6 top-6 z-20 text-3xl tracking-[0.14em] text-white transition hover:text-[#B22222] md:left-10 md:top-8`}
-        >
-          Back
-        </Link>
-
         <div className="absolute left-[16%] top-[10%] z-10 w-[clamp(10%,20%,20%)] aspect-[3/4]">
           <Image
             src="/redscroll.png"
@@ -199,7 +192,7 @@ export default function InterrogationPage() {
             className="object-contain brightness-90 drop-shadow-[0_24px_35px_rgba(0,0,0,0.45)]"
           />
 
-          <div className="absolute inset-[16%_20%_8%_22%]">
+          <div className="absolute inset-[16%_20%_15%_22%]">
             <div className="flex h-full flex-col">
               <p className={`${cinzel.className} text-center text-xl text-[#000000]/80`}>
                 Notes
@@ -211,6 +204,12 @@ export default function InterrogationPage() {
                 className="h-full w-full resize-none px-1 text-[12px] leading-5 text-[#000000]/80 placeholder:text-[#000000]/60 focus:outline-none"
               />
             </div>
+            <Link
+              href={backHref}
+              className={`${caesarDressing.className} absolute left-19 bottom-[-32] z-20 text-3xl tracking-[0.14em] text-black transition hover:text-white`}
+            >
+              Back
+            </Link>
           </div>
         </div>
 
@@ -229,23 +228,9 @@ export default function InterrogationPage() {
           )}
         </div>
 
-        <div className="absolute right-[4%] top-[10%] z-20 flex h-[78%] w-[30%] min-w-[22rem] flex-col rounded-[2rem] border border-white/10 bg-black/55 p-5 text-white backdrop-blur-md">
-          <div className="border-b border-white/10 pb-4">
-            <h1 className={`${cinzel.className} text-3xl text-red-200`}>
-              {character.name}
-            </h1>
-            <p className="mt-2 text-sm text-zinc-300">
-              Ask questions and they will only answer from their own knowledge in this case.
-            </p>
-          </div>
-
+        <div className="absolute right-[4%] top-[4%] z-20 w-[clamp(10%,32%,32%)] aspect-3/4 flex flex-col  p-5">
           <div className="mt-4 flex-1 space-y-3 overflow-y-auto pr-2">
-            {messages.length === 0 ? (
-              <div className="flex h-full items-center justify-center text-center text-sm leading-7 text-zinc-400">
-                Start the interrogation. Ask about the timeline, alibi, or what they saw.
-              </div>
-            ) : (
-              messages.map((message, index) => (
+              {(messages.map((message, index) => (
                 <div
                   key={`${message.role}-${index}`}
                   className={`flex ${
@@ -255,11 +240,11 @@ export default function InterrogationPage() {
                   <div
                     className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-7 ${
                       message.role === "user"
-                        ? "bg-red-800 text-white"
-                        : "bg-zinc-900/90 text-zinc-100"
+                        ? "bg-black/50 border border-white/10 backdrop-blur-xs text-zinc-100"
+                        : "bg-[#B22222]/50 border border-white/10 text-zinc-100"
                     }`}
                   >
-                    <div className="mb-1 text-[11px] uppercase tracking-[0.18em] opacity-60">
+                    <div className="mb-1 text-[11px] uppercase tracking-[0.2em] opacity-60">
                       {message.role === "user" ? "You" : character.name}
                     </div>
                     <p>{message.content}</p>
@@ -279,17 +264,17 @@ export default function InterrogationPage() {
                   askAI();
                 }
               }}
-              placeholder={`Question ${character.name}...`}
+              placeholder={`Interrogate ${character.name}...`}
               disabled={loading}
-              className="flex-1 rounded-xl border border-white/10 bg-black/50 px-4 py-3 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-red-700"
+              className="flex-1 rounded-xl border border-white/10 bg-black/50 px-4 py-4 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-red-700"
             />
             <button
               type="button"
               onClick={askAI}
               disabled={loading || !question.trim()}
-              className="rounded-xl bg-red-800 px-5 py-3 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-xl bg-red-800 px-8 py-4 text-sm font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {loading ? "..." : "Send"}
+              {loading ? "..." : "Ask"}
             </button>
           </div>
         </div>

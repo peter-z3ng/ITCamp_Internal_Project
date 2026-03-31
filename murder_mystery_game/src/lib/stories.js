@@ -451,7 +451,9 @@ Cross-reference the suspects' statements. When you catch the killer in a physica
           'Will adamantly claim she was outside in the warm humid air the entire 15 minutes and left the room at the exact same time as Rey.'
         ],
         knows: [
-          'She knows Fuku drank the tea, but will pretend she has no idea what happened.'
+          'She knows Fuku drank the tea, but will pretend she has no idea what happened.',
+          'Vanness, a cool marketing EXCO, was travelling for two weeks.',
+          'If asked about Desmond, she only smiles and says, "Of course! I know Desmond hehe."'
         ],
         subtleClues: {
           surface: [
@@ -476,7 +478,9 @@ Cross-reference the suspects' statements. When you catch the killer in a physica
           'Will pretend he was outside drafting a sponsorship pitch, even though his eyes were glued to his game.'
         ],
         knows: [
-          'He saw Michelle walking in the hallway at 7:10 PM. She was shivering, rubbing her arms, and complaining about how freezing cold she was.'
+          'He saw Michelle walking in the hallway at 7:10 PM. She was shivering, rubbing her arms, and complaining about how freezing cold she was.',
+          'Vanness, a cool marketing EXCO, was travelling for two weeks.',
+          'Desmond is a playful and chill technical EXCO who is obsessed with 67.'
         ],
         subtleClues: {
           surface: [
@@ -501,7 +505,9 @@ Cross-reference the suspects' statements. When you catch the killer in a physica
           'None; he is genuinely heartbroken and traumatized by finding his friend\'s body.'
         ],
         knows: [
-          'Knows for a fact that Michelle did NOT leave the room at 7:00 PM. Michelle told Fuku she was going to stay behind for a minute to help him format a document.'
+          'Knows for a fact that Michelle did NOT leave the room at 7:00 PM. Michelle told Fuku she was going to stay behind for a minute to help him format a document.',
+          'Vanness, a cool marketing EXCO, was travelling for two weeks.',
+          'Desmond is a playful and chill technical EXCO who is obsessed with 67.'
         ],
         subtleClues: {
           surface: [
@@ -526,7 +532,9 @@ Cross-reference the suspects' statements. When you catch the killer in a physica
           'Claims she was just doing her own assigned tasks because she is too proud to admit she was making a surprise for him.'
         ],
         knows: [
-          'Even with her headphones on, she glanced up at 7:05 PM and saw Fuku alive, perfectly fine, and typing on his laptop.'
+          'Even with her headphones on, she glanced up at 7:05 PM and saw Fuku alive, perfectly fine, and typing on his laptop.',
+          'Vanness, a cool marketing EXCO, was travelling for two weeks.',
+          'Desmond is a playful and chill technical EXCO who is obsessed with 67.'
         ],
         subtleClues: {
           surface: [

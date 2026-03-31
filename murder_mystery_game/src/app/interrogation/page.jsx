@@ -57,6 +57,7 @@ const CHARACTER_POSITIONS = {
     vp: "left-[38%] top-[32.5%] w-[clamp(10%,24%,24%)] aspect-[3/4]",
     partnership: "left-[39%] top-[27%] w-[clamp(10%,24%,24%)] aspect-[3/4]",
     technical: "left-[40%] top-[32%] w-[clamp(10%,24%,24%)] aspect-[3/4]",
+    secretary: "left-[38%] top-[33%] w-[clamp(10%,24%,24%)] aspect-[3/4]",
   }
 };
 

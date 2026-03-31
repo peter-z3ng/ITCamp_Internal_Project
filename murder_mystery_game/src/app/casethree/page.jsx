@@ -103,7 +103,7 @@ export default function CaseThree() {
           {/* YanMei */}
           <Link
             href="/interrogation?storyId=sim_it_club&characterId=technical"
-            className="group absolute z-10 bottom-[6%] right-[18%] w-[clamp(12%,26%,26%)] aspect-[3/4]"
+            className="group absolute z-10 bottom-[20.5%] right-[28.2%] w-[clamp(12%,21%,21%)] aspect-[3/4]"
           >
             <Image
               src="/c_assets/yanmei.png"

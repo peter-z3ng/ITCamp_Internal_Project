@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Caesar_Dressing, Cinzel } from "next/font/google";
+import { Caesar_Dressing, Cinzel, Patrick_Hand } from "next/font/google";
 import { STORIES } from "@/lib/stories";
 
 const cinzel = Cinzel({
@@ -15,6 +15,12 @@ const caesarDressing = Caesar_Dressing({
   subsets: ["latin"],
   weight: "400",
 });
+
+const patrickHand = Patrick_Hand({
+  subsets: ["latin"],
+  weight: "400",
+});
+
 
 const CORKBOARD_ASSETS = {
   sterling_estate: "/corkboard.png",
@@ -157,14 +163,14 @@ export default function AccusationPage() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(120,0,0,0.22),_rgba(0,0,0,0.92)_65%)]" />
 
       <div className="relative z-10 flex w-full max-w-6xl flex-col items-center">
-        <h1 className={`${cinzel.className} text-center text-5xl tracking-[0.16em] text-[#B22222]`}>
+        <h1 className={`${cinzel.className} mt-4 text-center text-5xl tracking-[0.16em] text-[#B22222]`}>
           Accusation Board
         </h1>
-        <p className="mt-4 text-center text-sm uppercase tracking-[0.28em] text-zinc-400">
-          {story?.title || "Final Decision"}
+        <p className="mt-5 text-center text-sm tracking-[0.28em] text-zinc-400 animate-[pulse_1.2s_ease-in-out_infinite]">
+            Select the culprit and justify your verdict
         </p>
 
-        <div className="relative mt-10 aspect-[4/3] w-full max-w-5xl">
+        <div className="relative -mt-8 aspect-[4/3] w-full max-w-5xl">
           <Image
             src={corkboardImage}
             alt="Accusation corkboard"
@@ -184,7 +190,7 @@ export default function AccusationPage() {
                 type="button"
                 onClick={() => handleAccuse(suspect.id)}
                 className={`group absolute z-10 cursor-pointer transition-transform ${suspect.className} ${
-                  isSelected ? "scale-[1.03]" : ""
+                  isSelected ? "grayscale-0" : ""
                 }`}
               >
                 <div className="relative h-full w-full">
@@ -217,8 +223,8 @@ export default function AccusationPage() {
             <textarea
                     value={answer}
                     onChange={(e) => setAnswer(e.target.value)}
-                    placeholder="Type something..."
-                    className="absolute left-[40%] top-[25%] w-[20%] aspect-[21/9] text-zinc-800 outline-none"
+                    placeholder="Your verdict here..."
+                    className={`${patrickHand.className} absolute z-20 left-[40%] top-[24%] w-[20%] aspect-[21/9] text-zinc-600 tracking-[0.2rem] outline-none resize-none`}
                 />
         </div>
       </div>
@@ -226,7 +232,7 @@ export default function AccusationPage() {
             type="button"
             onClick={handleConfirm}
             disabled={!selectedSuspectId || !answer.trim()}
-            className={`${caesarDressing.className} absolute z-20 text-4xl bottom-[3%] text-[#B22222] disabled:opacity-50 disabled:cursor-not-allowed`}
+            className={`${caesarDressing.className} absolute z-10 text-4xl bottom-[4%] text-[#B22222] disabled:opacity-50 disabled:cursor-not-allowed`}
             >CONFIRM
         </button>
     </main>

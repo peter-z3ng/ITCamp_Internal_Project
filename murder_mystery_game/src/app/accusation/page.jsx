@@ -62,59 +62,70 @@ const ACCUSATION_LAYOUTS = {
         className: "left-[36%] top-[27%] w-[28%] aspect-[3/4]",
     },
 },
-  knives_out: [
-    {
-      id: "son",
-      image: "/c_assets/Walt_ir.png",
-      className: "left-[7%] top-[10%] w-[21%] aspect-[3/4] -rotate-3",
-      labelClassName: "left-[9%] top-[56%]",
+  knives_out: {
+    suspects: [
+      {
+        id: "son",
+        image: "/c_assets/Walt_acc.png",
+        className: "left-[6.5%] bottom-[-4%] w-[35%] aspect-[3/4] focus:outline-none grayscale transition duration-100  hover:grayscale-0",
+      },
+      {
+        id: "nurse",
+        image: "/c_assets/marta_acc.png",
+        className: "right-[10.5%] bottom-[1.7%] w-[33%] aspect-[3/4] focus:outline-none grayscale transition duration-100  hover:grayscale-0",
+        labelClassName: "right-[9%] top-[55%]",
+      },
+      {
+        id: "grandson",
+        image: "/c_assets/hugh_acc.png",
+        className: "right-[9.5%] top-[4.5%] w-[35%] aspect-[3/4] focus:outline-none grayscale transition duration-100  hover:grayscale-0",
+      },
+      {
+        id: "daughter",
+        image: "/c_assets/lin_acc.png",
+        className: "left-[4.5%] w-[40%] aspect-[3/4] focus:outline-none grayscale transition duration-100  hover:grayscale-0",
+      
+      },
+    ],
+    victim: {
+        image: "/c_assets/casetwovictim.png",
+        className: "left-[36.2%] top-[34%] w-[26%] aspect-[3/4]",
     },
-    {
-      id: "nurse",
-      image: "/c_assets/marta_ir.png",
-      className: "right-[8%] top-[11%] w-[17%] aspect-[3/4] rotate-[2deg]",
-      labelClassName: "right-[9%] top-[55%]",
+},
+
+  sim_it_club: {
+    suspects: [
+      {
+        id: "vp",
+        image: "/c_assets/michelle_acc.png",
+        className: "left-[4%] top-[1%] w-[43%] aspect-[3/4] focus:outline-none grayscale transition duration-100  hover:grayscale-0",
+        
+      },
+      {
+        id: "partnership",
+        image: "/c_assets/winston_acc.png",
+        className: "left-[7%] bottom-[-4.5%] w-[37%] aspect-[3/4] focus:outline-none grayscale transition duration-100  hover:grayscale-0",
+        
+      },
+      {
+        id: "technical",
+        image: "/c_assets/yanmei_acc.png",
+        className: "right-[12%] top-[5.5%] w-[36%] aspect-[3/4] focus:outline-none grayscale transition duration-100  hover:grayscale-0",
+        
+      },
+      {
+        id: "secretary",
+        image: "/c_assets/rey_acc.png",
+        className: "right-[10%] bottom-[1%] w-[34%] aspect-[3/4] focus:outline-none grayscale transition duration-100  hover:grayscale-0",
+        
+      },
+    ],
+    victim: {
+      image: "/c_assets/fuku.png",
+      className: "left-[36.6%] top-[34%] w-[24%] aspect-[3/4]",
     },
-    {
-      id: "grandson",
-      image: "/c_assets/hugh_ir.png",
-      className: "left-[38%] top-[10%] w-[20%] aspect-[3/4]",
-      labelClassName: "left-[39%] top-[57%]",
-    },
-    {
-      id: "daughter",
-      image: "/c_assets/lin_ir.png",
-      className: "left-[37%] bottom-[8%] w-[17%] aspect-[3/4] rotate-[1deg]",
-      labelClassName: "left-[39%] bottom-[3%]",
-    },
-  ],
-  sim_it_club: [
-    {
-      id: "vp",
-      image: "/c_assets/michelle_ir.png",
-      className: "left-[7%] top-[10%] w-[18%] aspect-[3/4] -rotate-2",
-      labelClassName: "left-[8%] top-[55%]",
-    },
-    {
-      id: "partnership",
-      image: "/c_assets/winston_ir.png",
-      className: "right-[8%] top-[10%] w-[18%] aspect-[3/4] rotate-[2deg]",
-      labelClassName: "right-[7%] top-[55%]",
-    },
-    {
-      id: "technical",
-      image: "/c_assets/yanmei_ir.png",
-      className: "left-[15%] bottom-[8%] w-[18%] aspect-[3/4] -rotate-1",
-      labelClassName: "left-[17%] bottom-[3%]",
-    },
-    {
-      id: "secretary",
-      image: "/c_assets/rey_ir.png",
-      className: "right-[16%] bottom-[9%] w-[15%] aspect-[3/4] rotate-[1deg]",
-      labelClassName: "right-[16%] bottom-[3%]",
-    },
-  ],
-}
+  },
+} 
 
 export default function AccusationPage() {
   const router = useRouter();

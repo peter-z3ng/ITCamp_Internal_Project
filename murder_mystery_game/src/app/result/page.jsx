@@ -38,23 +38,25 @@ const RESULT_CONTENT = {
   },
   knives_out: {
     correct: {
-      title: "Thrombey Truth Unraveled",
-      message: "You untangled the family scheme and exposed the real mastermind behind the death.",
+      title: "The Murderer Revealed",
+      message: "You unraveled the twisted family plot and uncovered the true mastermind behind the death.",
+      image: "/casetwocorrect.png"
     },
     wrong: {
-      title: "The Family Walks Free",
-      message: "That accusation does not hold. The true architect of the crime still hides in the family.",
+      title: "The Real Culprit Escaped",
+      message: "You accused an innocent person. Your mistake ruined their life.",
       image:"/justicefailed.png"
     },
   },
   sim_it_club: {
     correct: {
-      title: "Case Closed",
-      message: "You uncovered who poisoned Fuku and brought the truth out of the club room.",
+      title: "Fuku Did Not Die in Vain",
+      message: "You revealed who poisoned Fuku and uncovered the truth hidden in the club room.",
+      image:"/casethreecorrect.png"
     },
     wrong: {
-      title: "Fatal Error Remains",
-      message: "That choice was off the mark. The real killer is still hidden among the EXCO.",
+      title: "The Real Culprit Escaped",
+      message: "Your accusation ruined an innocent life. The real murderer is still among the EXCO",
       image:"/justicefailed.png"
     },
   },

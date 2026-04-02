@@ -166,15 +166,16 @@ export default function CaseThree() {
               </button>
         </div>
 
-          <div className={`absolute z-20 w-[75%] h-[20%] left-1/2 top-2/5 -translate-x-1/2 transition-all duration-400 ${
+          <div className={`absolute z-20 w-[75%] h-[20%] left-1/2 top-2/5 -translate-x-1/2  py-12 transition-all duration-400 rounded-[2.5rem] border border-white/10 bg-black/80 backdrop-blur-1xl ${
                 showIntroPanel
                   ? "translate-y-0 opacity-100 brightness-250"
                   : "pointer-events-none translate-y-4 opacity-0"
               }`}
             >
-              <h1 className={`${cinzel.className} text-center text-6xl text-[#5A0F0F] py-12 tracking-widest rounded-[2.5rem] border border-white/10 bg-black/80 backdrop-blur-1xl`}>
+              <h1 className={`${cinzel.className} text-center text-4xl text-[#5A0F0F] tracking-widest `}>
                 Fatal Error at the SIM IT CLUB
               </h1>
+              <p className="text-center text-xs text-zinc-300 mt-5 tracking-[0.1rem]">Disclaimer: AI-generated characters are intended for artistic purposes only and may not reflect the appearance of real individuals.</p>
             </div>
 
         {/* Case File */}

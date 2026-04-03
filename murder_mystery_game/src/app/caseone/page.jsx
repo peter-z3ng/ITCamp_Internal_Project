@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -21,7 +21,7 @@ const cinzel = Cinzel({
   weight: "500",
 });
 
-export default function CaseOne() {
+function CaseOneContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const shouldShowIntro = searchParams.get("intro") === "1";
@@ -290,5 +290,13 @@ export default function CaseOne() {
           ) : null}
         </div>
     </main>
+  );
+}
+
+export default function CaseOnePage() {
+  return (
+    <Suspense fallback={<div className="min-h-dvh bg-black" />}>
+      <CaseOneContent />
+    </Suspense>
   );
 }

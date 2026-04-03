@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -68,7 +68,7 @@ const STORY_ROUTES = {
   sim_it_club: "/casethree"
 };
 
-export default function InterrogationPage() {
+function InterrogationContent() {
   const searchParams = useSearchParams();
   const storyId = searchParams.get("storyId");
   const characterId = searchParams.get("characterId");
@@ -297,5 +297,13 @@ export default function InterrogationPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function InterrogationPage() {
+  return (
+    <Suspense fallback={<div className="min-h-dvh bg-black" />}>
+      <InterrogationContent />
+    </Suspense>
   );
 }

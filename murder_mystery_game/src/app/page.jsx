@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Caesar_Dressing, Nosifer } from "next/font/google";
+import { Caesar_Dressing, Nosifer, Cinzel } from "next/font/google";
 
 const nosifer = Nosifer({
   subsets: ["latin"],
@@ -13,6 +13,11 @@ const nosifer = Nosifer({
 const caesarDressing = Caesar_Dressing({
   subsets: ["latin"],
   weight: "400",
+});
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["500", "700"],
 });
 
 function MenuButton({ children, href, onClick, disabled = false }) {
@@ -49,6 +54,15 @@ export default function Home() {
   const [showCreditModal, setShowCreditModal] = useState(false);
   const [showQuitModal, setShowQuitModal] = useState(false);
   const [isCancelHovered, setIsCancelHovered] = useState(false);
+  const [hoveredMember, setHoveredMember] = useState(null);
+
+  const members = [
+  { name: "Endy", github: "https://github.com/Endyano", image: "/cards/endy.png" },
+  { name: "Moe", github: "https://github.com/moecrosoft", image: "/cards/moe.png" },
+  { name: "Nan Phyu Sin Maung", github: "https://github.com/nanpsm", image: "/cards/nan.png" },
+  { name: "Paing Thit Xan", github: "https://github.com/peter-z3ng", image: "/cards/pai.png" },
+  { name: "Vicky Yang", github: "https://github.com/vicky1234500", image: "/cards/vicky.png" },
+  ];
 
   useEffect(() => {
     if (!showQuitModal && !showCreditModal) {
@@ -168,7 +182,7 @@ export default function Home() {
       ) : null}
 
       {showCreditModal ? (
-        <div className="fixed inset-0 z-30 flex items-center justify-center bg-black/65 px-6 py-8">
+        <div className="fixed inset-0 z-10 flex items-center justify-center bg-black/65 px-6 py-8">
           <button
             type="button"
             aria-label="Close credits"
@@ -176,15 +190,62 @@ export default function Home() {
             onClick={() => setShowCreditModal(false)}
           />
 
-          <div className="relative z-10 aspect-[4/3] w-[min(92vw,1200px)]">
+          <div className={`${cinzel.className} relative w-full max-w-[1400px] min-w-[1200px] aspect-[16/9]`}>
             <Image
-              src="/credit.png"
+              src="/creditbg.png"
               alt="Credit"
               fill
               priority
-              className="object-contain drop-shadow-[0_30px_80px_rgba(0,0,0,0.8)]"
+              className="object-contain z-0 drop-shadow-[0_30px_80px_rgba(0,0,0,0.8)]"
             />
+            <div className="relative z-10 flex flex-col items-center justify-center text-black/80 top-[15%] gap-2">
+              <h1 className="text-xl uppercase">Made with very little sleep</h1>
+              <span className="text-md uppercase">By</span>
+              <p className="text-xl uppercase px-6 py-4 text-[#FFFFFF] rounded-[2em] border border-white/40 bg-[#B22222] ">Michelle's Kids</p>
+              <div className="pt-10 flex flex-col items-center gap-5">
+                {members.map((member) => (
+                  <a
+                    key={member.github}
+                    href={member.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    onMouseEnter={() => setHoveredMember(member)}
+                    onMouseLeave={() => setHoveredMember(null)}
+                    className="text-md uppercase text-black/80 transition hover:text-[#B22222]"
+                  >
+                    {member.name}
+                  </a>
+                ))}
+              </div>
+
+              <div className="absolute left-[58%] top-[30%] h-[250px] w-[180px]">
+              {hoveredMember ? (
+                <Image
+                  src={hoveredMember.image}
+                  alt={hoveredMember.name}
+                  fill
+                  className="object-contain contrast-120"
+                />
+              ) : null}
+              </div>
+              <div className="relative pt-18 text-sm uppercase tracking-[0.05em]">
+                With special thanks to 
+                <span className="text-[#B22222]/80"> Fuku, Michelle, Rey, Winston and YanMei</span> for their photo contributions.
+              </div>
+              <p className="pt-4">
+                "Please lower your expectations"
+              </p>
+            </div>
           </div>
+          <div className="absolute z-20 bottom-[5%] left-[45%]">
+              <button
+                type="button"
+                onClick={() => setShowCreditModal(false)}
+                className={`${caesarDressing.className} text-[clamp(2rem,3.4vw,3.4rem)] uppercase tracking-[0.16em] text-white transition hover:text-[#B22222]`}
+              >
+                Cancel
+              </button>
+            </div>
         </div>
       ) : null}
     </main>

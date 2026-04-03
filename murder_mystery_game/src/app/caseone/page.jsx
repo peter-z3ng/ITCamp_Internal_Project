@@ -104,8 +104,6 @@ function CaseOneContent() {
             />
           </Link>
 
-          
-
           {/* Driver */}
           <Link
             href="/interrogation?storyId=sterling_estate&characterId=driver"
